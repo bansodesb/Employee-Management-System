@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Management System </title>
+</head>
+<body>
+     <div class="container mt-3">
+        <h1>Employee Management System <i class="fas fa-users"></i></h1>
+        <form method="get" action="" class="mb-3">
+            <div class="input-group">
+                <input type="text" name="q" class="form-control" placeholder="Search" value="{{ search_query }}">
+                <div class="input-group-append">
+                    <button type="submit" class="btn btn-outline-secondary"><i class="fas fa-search"></i> Search</button>
+                </div>
+            </div>
+        </form>
+
+        <ul class="list-group">
+            {% for employee in employees %}
+                <li class="list-group-item">
+                    <strong>{{ employee.1 }}</strong> - {{ employee.2 }} - {{ employee.3 }} - {{ employee.4 }}
+                    <span class="float-right">
+                        <a href="{% url 'employee_update' employee.0 %}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i> Edit</a>
+                        <a href="{% url 'employee_delete' employee.0 %}" class="btn btn-danger btn-sm"><i class="fas fa-trash-alt"></i> Delete</a>
+                    </span>
+                </li>
+            {% endfor %}
+        </ul>
+         <hr>
+            <div class="d-grid gap-2">
+                <a href="{% url 'employee_create' %}" class="btn btn-success mt-3"><i class="fas fa-plus"></i> Add Employee</a>
+              <a href="{% url 'index' %}" class="d-grid gap-2 d-md-flex justify-content-md-end"><i class="fas fa-plus"></i> Back </a>
+            </div>
+     </div>
+
+</body>
+</html>
